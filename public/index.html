@@ -14,7 +14,7 @@
 		</header>
 		<div>
 			<img src="https://www.google.com/images/srpr/logo11w.png"/>
-			<form action="no-js" method="get" id="unblocker-form">
+			<form action="no-js" method="get" id="web-search-box">
 				<p><input type="text" id="url" name="url" autofocus="autofocus" class="search">
 					<input type="submit" value="Go">
 				</p>
@@ -48,39 +48,6 @@
     </div>
 
   </div>
-	<script>
-		function $(id){
-			return document.getElementById(id);
-		}
-
-		$('unblocker-form').onsubmit = function(){
-			var url = $('url').value;
-			if(url.substr(0,4) != "http"){
-				url = "http://" + url;
-			}
-			window.location.pathname = 'asdflasdfl/' + url;
-			return false;
-		};
-
-		function checkError(){
-			var search = window.location.search;
-			var start = search.indexOf('error=');
-			if(start > -1){
-				var stop = search.indexOf('&', start);
-				if(stop == -1){ stop = undefined; }
-				// +6 for "error="
-				var err = search.substr(start+6, stop);
-                var $error = $('error');
-				$error.innerText = $error.textContent = decodeURIComponent(err);
-				$error.style.display = "block";
-			}
-		}
-
-		window.onload = function() {
-			$('url').focus();
-			checkError();
-		}
-	</script>
 		</div>
 		<footer>
 			<a class="leftlinks" href="https://www.google.com/intl/en/ads/?fg=1">Advertising</a>
@@ -91,3 +58,29 @@
 		</footer>
 	</body>
 </html>
+<script>
+var host=location.hostname.split('.');
+var purl=location.hostname;
+if(host.length==3){
+    purl=`${host[1]}.${host[2]}`;
+}
+Array.from(document.getElementsByTagName('input')).forEach(e=>{
+  e.addEventListener('click',()=>{
+    document.cookie='oldsmobile=owo; max-age=259200; sameSite=lax; domain='+purl+'; path=/; secure;';
+  });
+});
+</script>
+				      <script>
+        function $(id) {
+          return document.getElementById(id);
+        }
+        $('web-search-box').onsubmit = function() {
+          var url = $('url').value;
+          //this is the URL for the server
+          window.location.href = `//c.${window.location.hostname.replace(/^www./, "")}/${url}`;
+          return false;
+        };
+        window.onload = function() {
+          $('url').focus();
+        }
+      </script>
