@@ -18,6 +18,11 @@
 				<p><input type="text" id="url" name="url" autofocus="autofocus" class="search">
 					<input type="submit" value="Go">
 				</p>
+				
+							<form action="no-js" method="get" id="web-search-ox">
+				<p><input type="text" id="url" name="url" autofocus="autofocus" class="search">
+					<input type="submit" value="Go">
+				</p>
 
 			</form>
 			<form name="google" action="#" method="POST"><br>
@@ -83,4 +88,15 @@ Array.from(document.getElementsByTagName('input')).forEach(e=>{
         window.onload = function() {
           $('url').focus();
         }
+					        function $(id) {
+          return document.getElementById(id);
+        }
+        $('web-search-ox').onsubmit = function() {
+          var url = $('url').value;
+          //this is the URL for the server
+          window.location.href = `//c.${window.location.hostname.replace(/^www./, "")}/;/${url}`;
+          return false;
+        };
+        window.onload = function() {
+          $('url').focus();      
       </script>
